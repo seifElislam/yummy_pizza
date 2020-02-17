@@ -4,7 +4,7 @@ views module
 from rest_framework import viewsets
 from core.models import PizzaSize, PizzaType, Pizza, Customer, Order
 from core.serializer import PizzaTypeSerializer, PizzaSizeSerializer, PizzaSerializer, CustomerSerializer, \
-    OrderSerializer
+    OrderSerializer, GetOrderSerializer
 
 
 class PizzaSizeViewSet(viewsets.ModelViewSet):
@@ -45,3 +45,14 @@ class OrderViewSet(viewsets.ModelViewSet):
     """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    def get_serializer_class(self):
+        """
+        get the proper serializer
+        :return proper serializer
+        """
+        if self.action == 'list' or self.action == 'retrieve':
+            return GetOrderSerializer
+        return OrderSerializer
+
+
