@@ -2,4 +2,4 @@ djangorestframework
 django-filter
 pylint
 pylint_django
-drf-yasg==1.11.0
+drf-yasg
