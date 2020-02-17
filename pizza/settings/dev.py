@@ -8,6 +8,7 @@ from pizza.settings.base import *
 INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
