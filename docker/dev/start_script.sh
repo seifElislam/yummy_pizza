@@ -1,5 +1,6 @@
 #!/bin/sh
-
+# wait for db initaliztion
+sleep 20
 echo " >> installing dev requirements"
 pip install -r /app/requirements/dev.txt
 echo " >> starting app"
