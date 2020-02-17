@@ -20,15 +20,6 @@ class PizzaType(models.Model):
     desc = models.CharField(max_length=250, null=True, blank=True)
 
 
-class Pizza(models.Model):
-    """
-
-    """
-    type = models.OneToOneField(PizzaType, on_delete=models.CASCADE)
-    size = models.OneToOneField(PizzaSize, on_delete=models.CASCADE)
-    price = models.FloatField(default=0.0)
-
-
 class Customer(models.Model):
     """
 
@@ -46,9 +37,18 @@ class Order(models.Model):
 
     """
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    details = models.ForeignKey(Pizza, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
     total_price = models.FloatField(default=0.0)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
+
+
+class Pizza(models.Model):
+    """
+
+    """
+    type = models.OneToOneField(PizzaType, on_delete=models.CASCADE)
+    size = models.OneToOneField(PizzaSize, on_delete=models.CASCADE)
+    price = models.FloatField(default=0.0)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
