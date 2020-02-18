@@ -47,8 +47,8 @@ class Pizza(models.Model):
     """
 
     """
-    type = models.OneToOneField(PizzaType, on_delete=models.CASCADE)
-    size = models.OneToOneField(PizzaSize, on_delete=models.CASCADE)
+    type = models.ForeignKey(PizzaType, on_delete=models.CASCADE)
+    size = models.ForeignKey(PizzaSize, on_delete=models.CASCADE)
     price = models.FloatField(default=0.0)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='details', on_delete=models.CASCADE)
 
