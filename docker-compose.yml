@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  postgresdb:
+   image: postgres:latest
+   container_name: postgresdb
+   ports:
+    - "5430:5432"
+   environment:
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=pizza
+   networks: ['stack']
+
+  pizza_api:
+   image: pizza_api
+   build:
+     context: .
+     dockerfile: ./docker/dev/Dockerfile
+   container_name: pizza_api
+   volumes:
+     - .:/app
+   ports:
+     - "4000:8000"
+   depends_on:
+     - postgresdb
+   environment:
+     - STAGE=dev
+   networks: ['stack']
+   command: /start_script.sh
+
+networks:
+  stack:
+    driver: bridge
