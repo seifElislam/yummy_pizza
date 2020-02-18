@@ -108,7 +108,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     """
     customer_id = serializers.IntegerField(write_only=True)
-    details = PizzaSerializer(many=True)
+    details = GetPizzaSerializer(many=True)
     id = serializers.IntegerField(read_only=True)
     status = serializers.BooleanField(required=False, default=False)
 
